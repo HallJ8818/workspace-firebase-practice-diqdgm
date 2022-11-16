@@ -24,7 +24,7 @@ $(".sampleSurvey input[type='submit']").click(function(e) {
     data[entry.name]=entry.value;
   });
 
-  firebase.firestore().collection("surveydata").add({data});
+  firebase.firestore().collection("surveydata").add(data);
 
   /* clear the entry */
   $('form')[0].reset();
@@ -38,7 +38,7 @@ firebase.firestore().collection("surveydata").onSnapshot(function(querySnapShot)
   var n4 = 0; // how many D's
   var n5 = 0; // how many E's
   querySnapShot.forEach(function(doc){
-    console.log("document -- ", doc.data().data.choice);
+    console.log("document -- ", doc.data().choice);
     var s = doc.data().data.choice;
     switch(s){
       case "A": n1++; $('#ans1').text(n1);break;
