@@ -18,14 +18,6 @@ $("#signup-form").submit(function(e) {
   var em = document.getElementById("email").value;
   var pas = document.getElementById("password").value;
 
-  var inputdata = $('form').serializeArray();
-  var data = {};
-  inputdata.forEach((entry) =>{
-    data[entry.name]=entry.value;
-  });
-  firebase.firestore().collection("signup").add(data);
-  $('form')[0].reset();
-
   // create a user with email address and password
   firebase
     .auth()
