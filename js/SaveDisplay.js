@@ -12,6 +12,27 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+firebase.auth().onAuthStateChanged((user) => {
+  if(user){
+    console.log(user.email);
+  } else{
+    console.log('no user logged in');
+    window.location.href = 'index.html';
+  }
+});
+
+$('#signout').click(function(){
+  firebase
+    .auth()
+    .signOut()
+    .then(() => {
+      window.location.href = 'index.html';
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+});
+
 // save the data
 $(".sampleSurvey input[type='submit']").click(function(e) {
   e.preventDefault();
@@ -39,7 +60,7 @@ firebase.firestore().collection("surveydata").onSnapshot(function(querySnapShot)
   var n5 = 0; // how many E's
   querySnapShot.forEach(function(doc){
     console.log("document -- ", doc.data().choice);
-    var s = doc.data().data.choice;
+    var s = doc.data().choice;
     switch(s){
       case "A": n1++; $('#ans1').text(n1);break;
       case "B": n2++; $('#ans2').text(n2);break;
