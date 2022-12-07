@@ -12,7 +12,7 @@ var firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-firebase.auth().onAuthStateChanged((user) => {
+/*firebase.auth().onAuthStateChanged((user) => {
   if(user){
     console.log(user.email);
   } else{
@@ -31,7 +31,7 @@ $('#signout').click(function(){
     .catch((error) => {
       console.log(error.message);
     });
-});
+});*/
 
 // save the data
 $(".sampleSurvey input[type='submit']").click(function(e) {
